@@ -14,7 +14,7 @@ Center balancePanel(
         borderRadius: BorderRadius.circular(20),
       ),
       width: 90.w,
-      height: 22.h,
+      // height: 22.h,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 7.w, vertical: 3.h),
         child: Column(
