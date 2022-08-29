@@ -2,9 +2,9 @@ import 'package:crypto_app/widgets/actions/actions_widget.dart';
 import 'package:crypto_app/widgets/balance_panel/balance_panel.dart';
 import 'package:crypto_app/widgets/chart/chart_home_page.dart';
 import 'package:crypto_font_icons/crypto_font_icons.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
+import 'package:tuple/tuple.dart';
 import 'package:unicons/unicons.dart';
 
 class HomePage extends StatefulWidget {
@@ -81,13 +81,13 @@ class _HomePageState extends State<HomePage> {
                 'ETH',
                 'USD',
                 const [
-                  FlSpot(0, 2550.18),
-                  FlSpot(1, 2500.34),
-                  FlSpot(2, 2541.34),
-                  FlSpot(3, 2540.59),
-                  FlSpot(4, 2550.60),
-                  FlSpot(5, 2639.80),
-                  FlSpot(6, 2523.71),
+                  Tuple2(0, 2550.18),
+                  Tuple2(1, 2500.34),
+                  Tuple2(2, 2541.34),
+                  Tuple2(3, 2540.59),
+                  Tuple2(4, 2550.60),
+                  Tuple2(5, 2639.80),
+                  Tuple2(6, 2523.71),
                 ],
                 themeData,
               ),
@@ -98,13 +98,13 @@ class _HomePageState extends State<HomePage> {
                 'BTC',
                 'USD',
                 const [
-                  FlSpot(0, 40005.71),
-                  FlSpot(1, 40875.23),
-                  FlSpot(2, 40800.59),
-                  FlSpot(3, 40875.12),
-                  FlSpot(4, 41875.72),
-                  FlSpot(5, 40375.49),
-                  FlSpot(6, 40700.58),
+                  Tuple2(0, 40005.71),
+                  Tuple2(1, 40875.23),
+                  Tuple2(2, 40800.59),
+                  Tuple2(3, 40875.12),
+                  Tuple2(4, 41875.72),
+                  Tuple2(5, 40375.49),
+                  Tuple2(6, 40700.58),
                 ],
                 themeData,
               ),
@@ -115,13 +115,13 @@ class _HomePageState extends State<HomePage> {
                 'DOGE',
                 'PLN',
                 const [
-                  FlSpot(0, 0.22),
-                  FlSpot(1, 0.24),
-                  FlSpot(2, 0.28),
-                  FlSpot(3, 0.30),
-                  FlSpot(4, 0.35),
-                  FlSpot(5, 0.52),
-                  FlSpot(6, 0.58),
+                  Tuple2(0, 0.22),
+                  Tuple2(1, 0.24),
+                  Tuple2(2, 0.28),
+                  Tuple2(3, 0.30),
+                  Tuple2(4, 0.35),
+                  Tuple2(5, 0.52),
+                  Tuple2(6, 0.58),
                 ],
                 themeData,
               ),
@@ -132,13 +132,13 @@ class _HomePageState extends State<HomePage> {
                 'LTC',
                 'USD',
                 const [
-                  FlSpot(0, 100.40),
-                  FlSpot(1, 102.34),
-                  FlSpot(2, 98.23),
-                  FlSpot(3, 100.23),
-                  FlSpot(4, 102.10),
-                  FlSpot(5, 103.85),
-                  FlSpot(6, 103.20),
+                  Tuple2(0, 100.40),
+                  Tuple2(1, 102.34),
+                  Tuple2(2, 98.23),
+                  Tuple2(3, 100.23),
+                  Tuple2(4, 102.10),
+                  Tuple2(5, 103.85),
+                  Tuple2(6, 103.20),
                 ],
                 themeData,
               ),

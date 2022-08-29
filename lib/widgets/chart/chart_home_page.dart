@@ -1,10 +1,9 @@
-import 'package:crypto_app/pages/details_page.dart';
 import 'package:crypto_app/widgets/balance_panel/profit_percentage.dart';
-import 'package:crypto_app/widgets/chart/chart.dart';
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:tuple/tuple.dart';
 
 Padding chartHomePage(
   bool isHomePage,
@@ -12,35 +11,24 @@ Padding chartHomePage(
   String crypto,
   String cryptoCode,
   String exchangeCurrency,
-  List<FlSpot> spots,
+  List<Tuple2> spots,
   ThemeData themeData,
 ) {
   Rx<double> minY = 0.0.obs;
   Rx<double> maxY = 0.0.obs;
   List sortedSpots = spots.toList();
-  sortedSpots.sort((a, b) => a.y.compareTo(b.y));
-  minY.value = sortedSpots.first.y;
-  maxY.value = sortedSpots.last.y;
-  double profitPercent =
-      ((spots.last.y - spots[spots.length - 2].y) / spots[spots.length - 2].y) *
-          100;
+  sortedSpots.sort((a, b) => a.item2.compareTo(b.item2));
+  minY.value = sortedSpots.first.item2;
+  maxY.value = sortedSpots.last.item2;
+  double profitPercent = ((spots.last.item2 - spots[spots.length - 2].item2) /
+          spots[spots.length - 2].item2) *
+      100;
 
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: Center(
       child: GestureDetector(
-        onTap: () => Get.to(
-          () => DetailsPage(
-            cryptoIcon: cryptoIcon,
-            crypto: crypto,
-            cryptoCode: cryptoCode,
-            exchangeCurrency: exchangeCurrency,
-            spots: spots,
-            profitPercent: profitPercent,
-            maxY: maxY.value,
-            minY: minY.value,
-          ),
-        ),
+        onTap: () {},
         child: Container(
           decoration: BoxDecoration(
             color: Colors.black,
@@ -94,9 +82,75 @@ Padding chartHomePage(
                   child: SizedBox(
                     width: 90.w,
                     height: 10.h,
-                    child: Obx(
-                      () => LineChart(chart(isHomePage, spots, minY.value,
-                          maxY.value, profitPercent >= 0)),
+                    child: SfCartesianChart(
+                      plotAreaBorderWidth: 0,
+                      zoomPanBehavior: ZoomPanBehavior(
+
+                          /// To enable the pinch zooming as true.
+                          enablePinching: true,
+                          zoomMode: ZoomMode.x,
+                          enablePanning: true,
+                          enableMouseWheelZooming: true),
+                      legend: Legend(isVisible: false),
+                      primaryXAxis: NumericAxis(
+                          //minimum: 70,
+                          rangePadding: ChartRangePadding.round,
+                          //maximum: 130,
+                          //interval: 20,
+                          axisLine: const AxisLine(width: 0)),
+                      primaryYAxis: NumericAxis(
+                          //minimum: 70,
+                          rangePadding: ChartRangePadding.round,
+                          //maximum: 130,
+                          //interval: 20,
+                          axisLine: const AxisLine(width: 0)),
+                      axes: <ChartAxis>[
+                        NumericAxis(name: 'YAxis', isVisible: false
+                            // opposedPosition: true,
+                            // majorGridLines: const MajorGridLines(width: 0),
+                            // minimum: 0,
+                            // maximum: 10,
+                            // interval: 1)
+                            )
+                      ],
+                      //trackballBehavior: _trackballBehavior,
+                      //tooltipBehavior: _tooltipBehavior,
+                      //title: ChartTitle(text: 'HPG'),
+                      series: <ChartSeries<Tuple2, int>>[
+                        // CandleSeries<ChartSampleData, DateTime>(
+                        //     enableSolidCandles: true,
+                        //     dataSource: getChartData(),
+                        //     //trendlines: [Trendline(backwardForecast: 5)],
+                        //     //opacity: 0.7,
+                        //     xValueMapper: (ChartSampleData sales, _) => sales.x as DateTime,
+                        //     lowValueMapper: (ChartSampleData sales, _) => sales.low,
+                        //     highValueMapper: (ChartSampleData sales, _) => sales.high,
+                        //     openValueMapper: (ChartSampleData sales, _) => sales.open,
+                        //     closeValueMapper: (ChartSampleData sales, _) => sales.close),
+                        // ColumnSeries<ChartSampleData, DateTime>(
+                        //     dataSource: getChartData(),
+                        //     xValueMapper: (ChartSampleData sales, _) => sales.x as DateTime,
+                        //     yValueMapper: (ChartSampleData sales, _) => sales.volume!/100000000,
+                        //     yAxisName: 'YAxis'),
+                        SplineSeries<Tuple2, int>(
+                          color: const Color.fromRGBO(192, 108, 132, 1),
+                          dataSource: spots,
+                          xValueMapper: (Tuple2 data, _) => data.item1,
+                          yValueMapper: (Tuple2 data, _) => data.item2,
+                          // markerSettings: const MarkerSettings(isVisible: true),
+                          // name: 'Exchange rate',
+                          // trendlines: <Trendline>[
+                          //   Trendline(
+                          //       width: 3,
+                          //       dashArray: <double>[10, 10],
+                          //       name: 'Linear',
+                          //
+                          //       /// Here we mention the forward and backward forecast value.
+                          //       forwardForecast: _forwardForecastValue,
+                          //       backwardForecast: _backwardForecastValue)
+                          // ]
+                        )
+                      ],
                     ),
                   ),
                 ),
