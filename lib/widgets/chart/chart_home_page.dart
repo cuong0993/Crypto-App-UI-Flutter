@@ -77,81 +77,77 @@ Padding chartHomePage(
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 1.h, bottom: 3.h),
-                  child: SizedBox(
-                    width: 90.w,
-                    height: 10.h,
-                    child: SfCartesianChart(
-                      plotAreaBorderWidth: 0,
-                      zoomPanBehavior: ZoomPanBehavior(
-
-                          /// To enable the pinch zooming as true.
-                          enablePinching: true,
-                          zoomMode: ZoomMode.x,
-                          enablePanning: true,
-                          enableMouseWheelZooming: true),
-                      legend: Legend(isVisible: false),
-                      primaryXAxis: NumericAxis(
-                          //minimum: 70,
-                          rangePadding: ChartRangePadding.round,
-                          //maximum: 130,
-                          //interval: 20,
-                          axisLine: const AxisLine(width: 0)),
-                      primaryYAxis: NumericAxis(
-                          //minimum: 70,
-                          rangePadding: ChartRangePadding.round,
-                          //maximum: 130,
-                          //interval: 20,
-                          axisLine: const AxisLine(width: 0)),
-                      axes: <ChartAxis>[
-                        NumericAxis(name: 'YAxis', isVisible: false
-                            // opposedPosition: true,
-                            // majorGridLines: const MajorGridLines(width: 0),
-                            // minimum: 0,
-                            // maximum: 10,
-                            // interval: 1)
-                            )
-                      ],
-                      //trackballBehavior: _trackballBehavior,
-                      //tooltipBehavior: _tooltipBehavior,
-                      //title: ChartTitle(text: 'HPG'),
-                      series: <ChartSeries<Tuple2, int>>[
-                        // CandleSeries<ChartSampleData, DateTime>(
-                        //     enableSolidCandles: true,
-                        //     dataSource: getChartData(),
-                        //     //trendlines: [Trendline(backwardForecast: 5)],
-                        //     //opacity: 0.7,
-                        //     xValueMapper: (ChartSampleData sales, _) => sales.x as DateTime,
-                        //     lowValueMapper: (ChartSampleData sales, _) => sales.low,
-                        //     highValueMapper: (ChartSampleData sales, _) => sales.high,
-                        //     openValueMapper: (ChartSampleData sales, _) => sales.open,
-                        //     closeValueMapper: (ChartSampleData sales, _) => sales.close),
-                        // ColumnSeries<ChartSampleData, DateTime>(
-                        //     dataSource: getChartData(),
-                        //     xValueMapper: (ChartSampleData sales, _) => sales.x as DateTime,
-                        //     yValueMapper: (ChartSampleData sales, _) => sales.volume!/100000000,
-                        //     yAxisName: 'YAxis'),
-                        SplineSeries<Tuple2, int>(
-                          color: const Color.fromRGBO(192, 108, 132, 1),
-                          dataSource: spots,
-                          xValueMapper: (Tuple2 data, _) => data.item1,
-                          yValueMapper: (Tuple2 data, _) => data.item2,
-                          // markerSettings: const MarkerSettings(isVisible: true),
-                          // name: 'Exchange rate',
-                          // trendlines: <Trendline>[
-                          //   Trendline(
-                          //       width: 3,
-                          //       dashArray: <double>[10, 10],
-                          //       name: 'Linear',
-                          //
-                          //       /// Here we mention the forward and backward forecast value.
-                          //       forwardForecast: _forwardForecastValue,
-                          //       backwardForecast: _backwardForecastValue)
-                          // ]
-                        )
-                      ],
+                SizedBox(
+                  width: 90.w,
+                  height: 20.h,
+                  child: SfCartesianChart(
+                    plotAreaBorderWidth: 0,
+                    //legend: Legend(isVisible: false),
+                    //trackballBehavior: _trackballBehavior,
+                    tooltipBehavior: TooltipBehavior(enable: true),
+                    //title: ChartTitle(text: 'HPG'),
+                    primaryXAxis: NumericAxis(
+                      isVisible: false,
+                      //majorGridLines: const MajorGridLines(width: 0),
+                      //dateFormat: DateFormat.MMMd("vi"),
+                      //interval: 3,
+                      //minimum: DateTime(2016, 01, 01),
+                      //maximum: DateTime(2017, 01, 01),
                     ),
+                    primaryYAxis: NumericAxis(
+                      //minimum: 70,
+                        isVisible: false,
+
+                        //rangePadding: ChartRangePadding.round,
+                        //maximum: 130,
+                        //interval: 20,
+                        axisLine: const AxisLine(width: 0)),
+                    axes: <ChartAxis>[
+                      NumericAxis(
+                          name: 'YAxis',
+                          isVisible: false
+                        // opposedPosition: true,
+                        // majorGridLines: const MajorGridLines(width: 0),
+                        // minimum: 0,
+                        // maximum: 10,
+                        // interval: 1)
+                      )
+                    ],
+                    series: <ChartSeries<Tuple2, int>>[
+                      // CandleSeries<ChartSampleData, DateTime>(
+                      //     enableSolidCandles: true,
+                      //     dataSource: getChartData(),
+                      //     //trendlines: [Trendline(backwardForecast: 5)],
+                      //     //opacity: 0.7,
+                      //     xValueMapper: (ChartSampleData sales, _) => sales.x as DateTime,
+                      //     lowValueMapper: (ChartSampleData sales, _) => sales.low,
+                      //     highValueMapper: (ChartSampleData sales, _) => sales.high,
+                      //     openValueMapper: (ChartSampleData sales, _) => sales.open,
+                      //     closeValueMapper: (ChartSampleData sales, _) => sales.close),
+                      // ColumnSeries<ChartSampleData, DateTime>(
+                      //     dataSource: getChartData(),
+                      //     xValueMapper: (ChartSampleData sales, _) => sales.x as DateTime,
+                      //     yValueMapper: (ChartSampleData sales, _) => sales.volume!/100000000,
+                      //     yAxisName: 'YAxis'),
+                      SplineSeries<Tuple2, int>(
+                        color: const Color.fromRGBO(192, 108, 132, 1),
+                        dataSource: spots,
+                        xValueMapper: (Tuple2 data, _) => data.item1,
+                        yValueMapper: (Tuple2 data, _) => data.item2,
+                        // markerSettings: const MarkerSettings(isVisible: true),
+                        // name: 'Exchange rate',
+                        // trendlines: <Trendline>[
+                        //   Trendline(
+                        //       width: 3,
+                        //       dashArray: <double>[10, 10],
+                        //       name: 'Linear',
+                        //
+                        //       /// Here we mention the forward and backward forecast value.
+                        //       forwardForecast: _forwardForecastValue,
+                        //       backwardForecast: _backwardForecastValue)
+                        // ]
+                      )
+                    ],
                   ),
                 ),
               ],
