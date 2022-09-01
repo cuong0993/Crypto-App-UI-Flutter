@@ -129,8 +129,11 @@ Padding chartHomePage(
                       //     xValueMapper: (ChartSampleData sales, _) => sales.x as DateTime,
                       //     yValueMapper: (ChartSampleData sales, _) => sales.volume!/100000000,
                       //     yAxisName: 'YAxis'),
-                      SplineSeries<Tuple2, int>(
-                        color: const Color.fromRGBO(192, 108, 132, 1),
+                      SplineAreaSeries<Tuple2, int>(
+                       // color: const Color.fromRGBO(192, 108, 132, 1),
+                        color: const Color.fromRGBO(75, 135, 185, 0.6),
+                        borderColor: const Color.fromRGBO(75, 135, 185, 1),
+                        borderWidth: 10,
                         dataSource: spots,
                         xValueMapper: (Tuple2 data, _) => data.item1,
                         yValueMapper: (Tuple2 data, _) => data.item2,
