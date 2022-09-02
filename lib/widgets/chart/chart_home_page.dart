@@ -14,12 +14,12 @@ Padding chartHomePage(
   List<Tuple2> spots,
   ThemeData themeData,
 ) {
-  Rx<double> minY = 0.0.obs;
-  Rx<double> maxY = 0.0.obs;
-  List sortedSpots = spots.toList();
-  sortedSpots.sort((a, b) => a.item2.compareTo(b.item2));
-  minY.value = sortedSpots.first.item2;
-  maxY.value = sortedSpots.last.item2;
+  // Rx<double> minY = 0.0.obs;
+  // Rx<double> maxY = 0.0.obs;
+  // List sortedSpots = spots.toList();
+  // sortedSpots.sort((a, b) => a.item2.compareTo(b.item2));
+  // minY.value = sortedSpots.first.item2;
+  // maxY.value = sortedSpots.last.item2;
   double profitPercent = ((spots.last.item2 - spots[spots.length - 2].item2) /
           spots[spots.length - 2].item2) *
       100;
